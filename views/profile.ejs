@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+    <title>3 Ingredient Bliss</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <section class='main'>
+    <h1>3 Ingredient Bliss</h1>
+    <section class='content flex-container flex-wrap'>
+      <section class='user-panel panel'>
+
+        <section class='make-drink module'>
+          <h3>Add a Recipe</h3>
+          <input id='drinkName' class="drink-name" placeholder="Name" type="text" name="" value="">
+          <select id='mixMode' class="mix-mode" name="">
+            <option value="shaken">Shaken</option>
+            <option value="stirred">Stirred</option>
+            <option value="neat">Neat</option>
+          </select>
+          <input id='newIngredient1' type="text" name="" placeholder="Ingredient 1" value="">
+          <input id='newIngredient2' type="text" name="" placeholder="Ingredient 2" value="">
+          <input id='newIngredient3' type="text" name="" placeholder="Ingredient 3" value="">
+          <button id="addDrink" class="add-drink" type="button" name="button">Add Drink</button>
+        </section>
+        <h2>Your Recipes</h2>
+        <ul class="user-drinks flex-container flex-wrap">
+        <% for(var i=0; i<userDrinks.length; i++) {%>
+          <li id="<%= userDrinks[i].id %>" class="recipe card">
+            <h4><%= userDrinks[i].name %></h4>
+            <span><%= userDrinks[i].mixMode %></span>
+            <span><%= userDrinks[i].ingredient1 %></span>
+            <span><%= userDrinks[i].ingredient2 %></span>
+            <span><%= userDrinks[i].ingredient3 %></span>
+            <span>Nice: <%= userDrinks[i].nice %></span>
+            <button class="delete" type="button" name="button">Delete</button>
+          </li>
+        <% } %>
+        </ul>
+      </section>
+      <section class='community-panel panel'>
+        <h2>Community Recipes</h2>
+        <ul class="community-drinks flex-container flex-wrap">
+        <% for(var i=0; i<communityDrinks.length; i++) { %>
+          <li id="<%= communityDrinks[i].id %>" class="recipe card">
+            <h4><%= communityDrinks[i].name %></h4>
+            <span class='author'><%= communityDrinks[i].authorName %></span>
+
+            <span><%= communityDrinks[i].mixMode %></span>
+            <span>Ingredient 1: <%= communityDrinks[i].ingredient1 %></span>
+            <span>Ingredient 2: <%= communityDrinks[i].ingredient2 %></span>
+            <span>Ingredient 3: <%= communityDrinks[i].ingredient3 %></span>
+            <button nice='<%= communityDrinks[i].nice%>' class="nice" type="button" name="button"><%= communityDrinks[i].nice %>Nice</button>
+          </li>
+        <% } %>
+        </ul>
+      </section>
+    </section>
+    <button class="info-button">...</button>
+  </section>
+
+  <aside class="">
+    <h4 id="projectTitle">Welcome to Flip Card</h4>
+    <div class="external-links"><a id="portfolio-link" class="" href="http://jpmbvistro.netlify.app/" target='_blank'> More of my work</a></div>
+    <h5>Card Flip</h5>
+    <p>This application was part of a coding exercise meant to practice utilizeing JS ES6 classes. The way I abstracted the object allowed me to easily change the number and type of card available to choose.</p>
+    <div id="profile-container" class="profile-container"><img src="/img/profile-picture.jpg" alt="Profile Picture"></div>
+    <h5>About Me | Juan Vistro</h5>
+    <p>A software engineer based in Boston, I combine archipelagic design and my diasporic experiences to compose engaging, complex, and intuitive applications.</p>
+    <div class="collab-button"><a id="portfolio-link" class=" portfolio-link" target="_blank" href="https://jpmbvistro.com/" target='_blank'>Work with me</a>
+    <a id="hide-aside" class="hide-aside"></a></div>
+    <div class="">
+      <h3><span class="fa fa-user"></span> Local</h3>
+
+      <% if (user.local.email) { %>
+          <p>
+            ID: <span id='userID'><%= user._id %></span>
+            Email: <span id='userEmail'><%= user.local.email %></span>
+
+              <strong>password</strong>: <%= user.local.password %>
+          </p>
+
+          <a href="/unlink/local" class="btn btn-default">Unlink</a>
+      <% } else { %>
+          <a href="/connect/local" class="btn btn-default">Connect Local</a>
+      <% } %>
+
+    </div>
+
+  </aside>
+<script src="main.js"></script>
+
+</body>
+</html>
